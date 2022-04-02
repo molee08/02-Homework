@@ -1,41 +1,9 @@
 
+
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require ("fs");
-const generateHTML = ({
-title,
-description,
-installation,
-usage,
-  }) => '## Description
-  🔍 ${answers.description}
-  ## Table of Contents
-  - [Description](#description)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [License](#license)
-  - [Contributing](#contributing)
-  - [Tests](#tests)
-  - [Questions](#questions)
-  ## Installation
-  💾 ${answers.installation}
-  ## Usage
-  💻 ${answers.usage}
-  ## License
-  ![badge](https://img.shields.io/badge/license-${answers.license}-brightgreen)
-  <br />
-  This application is covered by the ${answers.license} license. 
-  ## Contributing
-  👪 ${answers.contributing}
-  ## Tests
-  ✏️ ${answers.tests}
-  ## Questions
-  ✋ ${answers.questions}<br />
-  <br />
-  :octocat: Find me on GitHub: [${answers.username}](https://github.com/${answers.username})<br />
-  <br />
-  ✉️ Email me with any questions: ${answers.email}<br /><br />
-  _This README was generated with ❤️ by [README-generator](https://github.com/jpd61/README-generator) 🔥🔥🔥_';
+const generateReadme = require('./utils/generateMarkdown');
 
 // inquierer to generate questions 
 inquirer
@@ -53,26 +21,64 @@ inquirer
     {
         type: "input",
         name: "installation",
-        message: "Describe the installation process if any: ",
+        message: "Describe the installation process: ",
     },
     {
         type: "input",
         name: "usage",
-        message: "What is this project usage for?"
+        message: "What is this project used for?"
+    },
+    {
+        type: "input",
+        name: "contributing",
+        message: "Who are the contributors of this project?"
+    },
+    {
+        type: "input",
+        name: "tests",
+        message: "Is there a test included?"
+    },
+    
+    {
+        type: "list",
+        name: "license",
+        message: "Choose the liscense used for this project:",
+        choices: [
+            "Apache",
+            "Academic",
+            "ISC",
+            "MIT",
+            "Mozilla",
+            "Open",
+        ]
+    },
+    {
+        type: "input",
+        name: "username",
+        message: "Enter your GitHub username:"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Enter your email:"
+    },
+    {
+        type: "input",
+        name: "questions",
+        message: "Any questions?"
     },
 
   ])
 
   .then((response) => {
     console.log(response);
-    let html = generateHTML(response);
-    // fs.writeFile('index2.html', JSON.stringify(response),(err) =>
-    fs.writeFile("README2.md", readme, (err) =>
+    let readme = generateReadme(response);
+    fs.writeFile("readme3.md", readme, (err) =>
       err ? console.log(err) : console.log("Success!")
     );
   });
 
-    // template
+
 
  
 
