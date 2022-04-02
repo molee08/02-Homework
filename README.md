@@ -1,3 +1,4 @@
+![Untitled_ Apr 2, 2022 6_33 PM](https://user-images.githubusercontent.com/97422765/161405010-96da6164-55c0-49b3-a731-684c0eb3c9f1.gif)
 ## Description
   
 🔍 A node.js application that uses user input from inquirer to populate a README.md file for user repository. The README.md file is created in the dist directory and can be found [here](.dist/README.md)  
